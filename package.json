@@ -1,0 +1,13 @@
+{
+	"name": "tokens-db",
+	"type": "module",
+	"version": "0.1.0",
+	"license": "MIT",
+	"scripts": {
+		"start": "node nft"
+	},
+	"dependencies": {
+		"coingecko-api-v3": "^0.0.29",
+		"near-api-js": "^0.44.2"
+	}
+}
