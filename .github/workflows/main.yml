@@ -1,0 +1,25 @@
+name: Tokens Data Updater
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '*/15 * * * *'
+
+jobs:
+  updateStats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare        
+        uses: actions/setup-node@v3
+        with:
+            node-version: 16
+      - run: npm i      
+      - name: Tokens Data
+        run: node load > tokens-db.json              
+        env:
+          EXPORT_MODE: CS
+      - uses: EndBug/add-and-commit@v9 
+        with: 
+          author_name: "Tokens Data Updater"
+          add: 'tokens-db.json --force'
+          message: "Tokens Data fetching"
